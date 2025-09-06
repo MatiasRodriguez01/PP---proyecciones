@@ -5,20 +5,35 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import practicas.proyecciones.persistence.projections.PedidoProyeccion;
-import practicas.proyecciones.persistence.repositories.PedidoRepository;
+import practicas.proyecciones.persistence.projections.compuestas.PedidoProyeccionCompuesta;
+import practicas.proyecciones.persistence.projections.simples.PedidoProyeccionSimple;
+import practicas.proyecciones.services.PedidoService;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/pedidos")
+@RequestMapping("/api/pedidos")
 public class PedidoController {
 
-    @Autowired
-    private PedidoRepository pedidoRepository;
+    private final PedidoService pedidoService;
 
-    @GetMapping("/Buscar")
-    public List<PedidoProyeccion> buscarPedidosPorCliente(@RequestParam String nombre){
-        return pedidoRepository.findByClienteNombre(nombre);
+    public PedidoController(PedidoService pedidoService) {
+        this.pedidoService = pedidoService;
+    }
+
+    @GetMapping("/buscarSimple")
+    public Optional<PedidoProyeccionSimple> buscarPedidoPorNombre(@RequestParam String nombre) throws Exception {
+        return pedidoService.buscarPedidoPorNombre(nombre);
+    }
+
+    @GetMapping("/buscar")
+    public List<PedidoProyeccionCompuesta> buscarPedidosPorCliente(@RequestParam String nombre) throws Exception {
+        return pedidoService.buscarPedidosPorNombre(nombre);
+    }
+
+    @GetMapping("/listarSimple")
+    public List<PedidoProyeccionSimple> listarPedidosSimple() throws Exception {
+        return pedidoService.listarPedidosProyeccionSimple();
     }
 }

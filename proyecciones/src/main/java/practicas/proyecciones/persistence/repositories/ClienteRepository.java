@@ -6,18 +6,22 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import practicas.proyecciones.persistence.entities.Cliente;
 import practicas.proyecciones.persistence.entities.Pedido;
+import practicas.proyecciones.persistence.projections.simples.ClienteProyeccionSimple;
 
 import java.util.List;
 
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 
+    List<Cliente> findAllBy();
+
+    ClienteProyeccionSimple findAllByNombre(String nombre);
+
     @Query(value = """
-        SELECT p
-            FROM pedido p
+        SELECT p.* FROM pedido p
                 INNER JOIN pedidos_cliente pc ON pc.pedido_id = p.id
                 INNER JOIN cliente c ON c.id = p.cliente_id
-            WHERE c.nombre = :nombre;
+            WHERE c.nombre = :nombre;  
     """, nativeQuery = true)
     List<Pedido> findByListPedidosForCliente(@Param("nombre") String nombre);
 

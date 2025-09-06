@@ -1,6 +1,8 @@
+
+
 INSERT INTO cliente(nombre, email) VALUES
-                                         ('Juan Perez', 'juan@example.com' ),
-                                         ('Maria Garcia', 'maria@example.com' );
+                                       ('Juan Perez', 'juan@example.com' ),
+                                       ('Maria Garcia', 'maria@example.com' );
 INSERT INTO producto(nombre, precio) VALUES
                                          ('Laptop', 1500.00),
                                          ('Telefono', 800.00),
