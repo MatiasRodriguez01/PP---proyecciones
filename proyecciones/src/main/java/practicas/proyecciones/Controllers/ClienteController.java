@@ -1,7 +1,6 @@
 package practicas.proyecciones.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,14 +19,21 @@ public class ClienteController {
     @Autowired
     private ClienteService clienteService;
 
+    /// Aca estan los endpoints para retornar las proyecciones de cliente
+
     @GetMapping
     public List<Cliente> listarClientes() throws Exception {
-        return clienteService.listar();
+        return clienteService.listarClientes();
     }
 
-    @GetMapping("/simple")
+    @GetMapping("/busquedaSimple")
     public ClienteProyeccionSimple buscarCliente(@RequestParam String nombre) throws Exception {
         return clienteService.listarProyeccionSimple(nombre);
+    }
+
+    @GetMapping("/listaSimple")
+    public List<ClienteProyeccionSimple> listasClientesProyeccionSimple() {
+        return clienteService.listarClientesPorProyeccionSimple("listaSimple");
     }
 
     @GetMapping("/query")

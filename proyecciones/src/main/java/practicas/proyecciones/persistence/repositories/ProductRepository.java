@@ -13,11 +13,10 @@ import java.util.List;
 @Repository
 public interface ProductRepository extends JpaRepository<Producto, Long> {
 
+    // proyeccoon dinamica
+    <T> List<T> findAllProjectedBy(Class<T> type);
 
-    List<ProductoProyeccionSimple> findAllProjectedBy();
-
-    List<ProductosProyeccionAbierta> findAllOpenProjectedBy();
-
+    // Proyeccion basada en clases
     @Query("SELECT new practicas.proyecciones.persistence.projections.clasesDTO.ProductoDTO(p.nombre, p.precio) From Producto p")
     List<ProductoDTO> findProductoByDTO();
 

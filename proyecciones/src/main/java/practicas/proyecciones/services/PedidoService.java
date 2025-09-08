@@ -17,25 +17,19 @@ public class PedidoService {
     @Autowired
     private PedidoRepository pedidoRepository;
 
-    public Optional<PedidoProyeccionSimple> buscarPedidoPorNombre(String nombre) throws Exception {
+    // usando la proyeccion dinamica retornamos una lista de pedidos por proyeccion compuesta usando su nombre
+    public List<PedidoProyeccionCompuesta> buscarPedidosProyeccionCompuestaPorNombre(String nombre) throws Exception {
         try {
-            return pedidoRepository.findByClienteNombre(nombre);
-        } catch (Exception e) {
-            throw new Exception("No se encontro el pedido de " + nombre);
-        }
-    }
-
-    public List<PedidoProyeccionCompuesta> buscarPedidosPorNombre(String nombre) throws Exception {
-        try {
-            return pedidoRepository.findAllByClienteNombre(nombre);
+            return pedidoRepository.findAllByClienteNombre(nombre, PedidoProyeccionCompuesta.class);
         } catch (Exception e) {
             throw new Exception("No se encontro los pedidos de " + nombre);
         }
     }
 
-    public List<PedidoProyeccionSimple> listarPedidosProyeccionSimple() throws Exception {
+    // usando la proyeccion dinamica retornamos una lista de pedidos por proyeccion simple usando su nombre
+    public List<PedidoProyeccionSimple> listarPedidosProyeccionSimplePorNombre(String nombre) throws Exception {
         try {
-            return pedidoRepository.findAllPedidosBy();
+            return pedidoRepository.findAllByClienteNombre(nombre, PedidoProyeccionSimple.class);
         } catch (Exception e) {
             throw new Exception("No se pudo filtrar los pedidos por la proyeccion simple");
         }

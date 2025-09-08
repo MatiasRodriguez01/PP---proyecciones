@@ -24,13 +24,26 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	// Spring Boot Starter para web y JPA
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+	// Lombok
 	compileOnly 'org.projectlombok:lombok'
-	runtimeOnly 'com.mysql:mysql-connector-j'
 	annotationProcessor 'org.projectlombok:lombok'
+
+	// Base de datos H2 (en memoria para desarrollo/testing)
+	runtimeOnly 'com.h2database:h2'
+
+	// Base de datos MySQL (opcional, descomentar si la usás)
+	// runtimeOnly 'com.mysql:mysql-connector-j'
+
+	// Tests
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+	// Opcional: recarga automática en desarrollo
+	// developmentOnly 'org.springframework.boot:spring-boot-devtools'
 }
 
 tasks.named('test') {

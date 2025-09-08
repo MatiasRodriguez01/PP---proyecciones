@@ -10,6 +10,7 @@ public interface PedidoProyeccionCompuesta {
 
     Long getId();
     LocalDate getFecha();
+    ClienteProyeccionSimple getCliente();
     List<ProductoProyeccionSimple> getProductos();
 
 }

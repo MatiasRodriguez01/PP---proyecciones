@@ -29,7 +29,7 @@ public class TestClearData {
             System.out.println(p);
         }
 
-        List<ProductosProyeccionAbierta> ps = productRepository.findAllOpenProjectedBy();
+        List<ProductosProyeccionAbierta> ps = productRepository.findAllProjectedBy(ProductosProyeccionAbierta.class);
         assertThat(ps).hasSize(4);
         for(ProductosProyeccionAbierta p : ps) {
             System.out.println(p.getFullData());

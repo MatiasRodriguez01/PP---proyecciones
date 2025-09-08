@@ -18,6 +18,8 @@ public class ProductoController {
     @Autowired
     private ProductoService productoService;
 
+    /// Aca estan los endpoints para retornar las proyecciones de producto
+
     @GetMapping("/listaSimple")
     public List<ProductoProyeccionSimple> listarProductoProyeccionSimple() throws Exception {
         return productoService.listarProductosProyeccionSimple();

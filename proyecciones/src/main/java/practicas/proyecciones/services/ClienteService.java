@@ -17,22 +17,35 @@ public class ClienteService {
     @Autowired
     private ClienteRepository clienteRepository;
 
-    public List<Cliente> listar() throws Exception{
+    // usando la proyeccion dinamica retornamos una lista de clientes usando la entidad
+    public List<Cliente> listarClientes() throws Exception{
         try {
-            return clienteRepository.findAllBy();
+            return clienteRepository.findAllBy(Cliente.class);
         } catch (Exception ex) {
             throw new Exception("No se Encontraron los Clientes");
         }
     }
 
+    // usando la proyeccion dinamica retornamos un cliente por proyeccion simple
     public ClienteProyeccionSimple listarProyeccionSimple(String nombre) throws Exception {
         try {
-            return clienteRepository.findAllByNombre(nombre);
+            return clienteRepository.findFirstByNombre(nombre, ClienteProyeccionSimple.class);
         } catch (Exception ex) {
             throw new Exception("No se filtro la proyeccion simple");
         }
     }
 
+    // usando la proyeccion dinamica retornamos una lista de clientes por proyeccion simple
+    public List<ClienteProyeccionSimple> listarClientesPorProyeccionSimple(String proyeccion)  {
+        try {
+            return clienteRepository.findAllBy(ClienteProyeccionSimple.class);
+        } catch (Exception e) {
+            throw new RuntimeException("No se pudo filtrar los clientes por proyección", e);
+        }
+    }
+
+
+    // Aca usamos la query hecha en el repositorio para retornar los pedidos del cliente usando su nombre
     public List<Pedido> listarPedidos(String nombre) throws Exception {
         try {
             return clienteRepository.findByListPedidosForCliente(nombre);

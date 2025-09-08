@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 import practicas.proyecciones.persistence.entities.Pedido;
-import practicas.proyecciones.persistence.projections.compuestas.ClienteProyeccionCompuesta;
 import practicas.proyecciones.persistence.projections.simples.ClienteProyeccionSimple;
 import practicas.proyecciones.persistence.projections.compuestas.PedidoProyeccionCompuesta;
 import practicas.proyecciones.persistence.repositories.ClienteRepository;
@@ -33,7 +32,7 @@ public class PedidoProyeccionTest {
 
     @Test
     public void testBuscarPedidosConCliente() throws Exception {
-        List<PedidoProyeccionCompuesta> pedidos = pedidoRepository.findByClienteNombre("Juan Perez");
+        List<PedidoProyeccionCompuesta> pedidos = pedidoRepository.findAllByClienteNombre("Juan Perez", PedidoProyeccionCompuesta.class);
 
         assertThat(pedidos).hasSize(2);
 
@@ -41,7 +40,7 @@ public class PedidoProyeccionTest {
         assertThat(pedido.getId()).isNotNull();
         assertThat(pedido.getFecha()).isEqualTo("2023-10-21");
 
-        ClienteProyeccionSimple cliente = clienteRepository.findAllByNombre("Juan Perez");
+        ClienteProyeccionSimple cliente = clienteRepository.findFirstByNombre("Juan Perez",ClienteProyeccionSimple.class);
         assertThat(cliente.getNombre()).isEqualTo("Juan Perez");
         assertThat(cliente.getEmail()).isEqualTo("juan@example.com");
 

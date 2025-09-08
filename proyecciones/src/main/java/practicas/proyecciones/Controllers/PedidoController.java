@@ -22,18 +22,15 @@ public class PedidoController {
         this.pedidoService = pedidoService;
     }
 
-    @GetMapping("/buscarSimple")
-    public Optional<PedidoProyeccionSimple> buscarPedidoPorNombre(@RequestParam String nombre) throws Exception {
-        return pedidoService.buscarPedidoPorNombre(nombre);
-    }
+    /// Aca estan los endpoints para retornar las proyecciones de pedidos
 
-    @GetMapping("/buscar")
+    @GetMapping("/listaCompuesta")
     public List<PedidoProyeccionCompuesta> buscarPedidosPorCliente(@RequestParam String nombre) throws Exception {
-        return pedidoService.buscarPedidosPorNombre(nombre);
+        return pedidoService.buscarPedidosProyeccionCompuestaPorNombre(nombre);
     }
 
-    @GetMapping("/listarSimple")
-    public List<PedidoProyeccionSimple> listarPedidosSimple() throws Exception {
-        return pedidoService.listarPedidosProyeccionSimple();
+    @GetMapping("/listaSimple")
+    public List<PedidoProyeccionSimple> listarPedidosSimple(@RequestParam String nombre) throws Exception {
+        return pedidoService.listarPedidosProyeccionSimplePorNombre(nombre);
     }
 }

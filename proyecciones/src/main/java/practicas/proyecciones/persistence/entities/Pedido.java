@@ -26,7 +26,7 @@ public class Pedido {
     @JsonIgnoreProperties("pedidos")
     private Cliente cliente;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "pedido_productos",
             joinColumns = @JoinColumn(name = "pedido_id"),

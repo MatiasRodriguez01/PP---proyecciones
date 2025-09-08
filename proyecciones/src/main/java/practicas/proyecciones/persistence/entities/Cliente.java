@@ -20,7 +20,7 @@ public class Cliente {
     private String nombre;
     private String email;
 
-    @OneToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "pedidos_cliente",
             joinColumns = @JoinColumn(name = "cliente_id"),

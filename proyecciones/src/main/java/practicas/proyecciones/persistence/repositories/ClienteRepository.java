@@ -13,10 +13,13 @@ import java.util.List;
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 
-    List<Cliente> findAllBy();
+    // proyeccion dimanca que muestra una lista
+    <T> List<T> findAllBy(Class<T> type);
 
-    ClienteProyeccionSimple findAllByNombre(String nombre);
+    // proyeccion dinamica que muestra un objeto
+    <T> T findFirstByNombre(String nombre, Class<T> type);
 
+    // query
     @Query(value = """
         SELECT p.* FROM pedido p
                 INNER JOIN pedidos_cliente pc ON pc.pedido_id = p.id
