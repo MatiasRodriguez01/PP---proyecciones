@@ -1,6 +1,4 @@
-Basándome en el código del repositorio `MatiasRodriguez01/PP---proyecciones`, veo que estás pidiendo un README estructurado para explicar cómo usar las diferentes proyecciones implementadas en los controladores y cómo usar el proyecto completo. <cite/>
-
-# README - Sistema de Proyecciones Spring Boot
+# Sistema de Proyecciones Spring Boot
 
 Este proyecto demuestra diferentes tipos de proyecciones de datos usando Spring Data JPA en una aplicación de gestión de pedidos, clientes y productos. [1](#0-0) 
 
