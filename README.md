@@ -112,17 +112,16 @@ curl http://localhost:8080/api/pedidos/buscar?nombre=Juan
 ## Estructura de Proyecciones por Repositorio
 
 ### ProductRepository
-- **Simple**: `findAllProjectedBy()` [17](#0-16) 
-- **Abierta**: `findAllOpenProjectedBy()` [18](#0-17) 
-- **DTO**: `findProductoByDTO()` [19](#0-18) 
-
+- **Simple**: `findAllProjectedBy()`  
+- **Abierta**: `findAllOpenProjectedBy()` 
+- **DTO**: `findProductoByDTO()` 
 ### PedidoRepository  
-- **Simple**: `findByClienteNombre()`, `findAllPedidosBy()` [20](#0-19) 
-- **Compuesta**: `findAllByClienteNombre()` [21](#0-20) 
+- **Simple**: `findByClienteNombre()`, `findAllPedidosBy()`
+- **Compuesta**: `findAllByClienteNombre()`  
 
 ### ClienteRepository
-- **Simple**: `findAllByNombre()` [22](#0-21) 
-- **Consulta Nativa**: `findByListPedidosForCliente()` [23](#0-22) 
+- **Simple**: `findAllByNombre()`  
+- **Consulta Nativa**: `findByListPedidosForCliente()` 
 
 
 ### Citations
