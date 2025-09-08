@@ -1,10 +1,10 @@
 # Sistema de Proyecciones Spring Boot
 
-Este proyecto demuestra diferentes tipos de proyecciones de datos usando Spring Data JPA en una aplicación de gestión de pedidos, clientes y productos. [1](#0-0) 
+Este proyecto demuestra diferentes tipos de proyecciones de datos usando Spring Data JPA en una aplicación de gestión de pedidos, clientes y productos.
 
 ## Arquitectura del Proyecto
 
-El sistema implementa una arquitectura de 3 capas: [2](#0-1) 
+El sistema implementa una arquitectura de 3 capas: 
 
 - **Controllers**: Endpoints REST que exponen las APIs
 - **Services**: Lógica de negocio y manejo de excepciones  
@@ -13,16 +13,16 @@ El sistema implementa una arquitectura de 3 capas: [2](#0-1)
 ## Tipos de Proyecciones Implementadas
 
 ### 1. Proyecciones Simples (Interface-based)
-Extraen campos específicos de una entidad usando interfaces. [3](#0-2) 
+Extraen campos específicos de una entidad usando interfaces. 
 
 ### 2. Proyecciones Compuestas
-Incluyen relaciones entre entidades manteniendo la estructura de proyección. [4](#0-3) 
+Incluyen relaciones entre entidades manteniendo la estructura de proyección. 
 
 ### 3. Proyecciones Abiertas (SpEL)
-Usan expresiones SpEL para computar valores dinámicamente. [5](#0-4) 
+Usan expresiones SpEL para computar valores dinámicamente. 
 
 ### 4. Proyecciones DTO (Class-based)
-Usan clases concretas con consultas JPQL personalizadas. [6](#0-5) 
+Usan clases concretas con consultas JPQL personalizadas. 
 
 ## APIs Disponibles
 
@@ -32,19 +32,18 @@ Usan clases concretas con consultas JPQL personalizadas. [6](#0-5)
 ```
 GET /api/pedidos/buscarSimple?nombre={nombreCliente}
 ```
-Retorna: `PedidoProyeccionSimple` [7](#0-6) 
-
+Retorna: `PedidoProyeccionSimple`
 #### Buscar pedidos compuestos por cliente  
 ```
 GET /api/pedidos/buscar?nombre={nombreCliente}
 ```
-Retorna: `List<PedidoProyeccionCompuesta>` [8](#0-7) 
+Retorna: `List<PedidoProyeccionCompuesta>` 
 
 #### Listar todos los pedidos (proyección simple)
 ```
 GET /api/pedidos/listarSimple
 ```
-Retorna: `List<PedidoProyeccionSimple>` [9](#0-8) 
+Retorna: `List<PedidoProyeccionSimple>`
 
 ### Gestión de Clientes (`/api/clientes`)
 
@@ -52,19 +51,19 @@ Retorna: `List<PedidoProyeccionSimple>` [9](#0-8)
 ```
 GET /api/clientes
 ```
-Retorna: `List<Cliente>` [10](#0-9) 
+Retorna: `List<Cliente>` 
 
 #### Buscar cliente por proyección simple
 ```
 GET /api/clientes/simple?nombre={nombreCliente}
 ```
-Retorna: `ClienteProyeccionSimple` [11](#0-10) 
+Retorna: `ClienteProyeccionSimple` 
 
 #### Buscar pedidos de un cliente (consulta nativa)
 ```
 GET /api/clientes/query?nombre={nombreCliente}
 ```
-Retorna: `List<Pedido>` [12](#0-11) 
+Retorna: `List<Pedido>` 
 
 ### Gestión de Productos (`/api/productos`)
 
@@ -72,19 +71,19 @@ Retorna: `List<Pedido>` [12](#0-11)
 ```
 GET /api/productos/listaSimple
 ```
-Retorna: `List<ProductoProyeccionSimple>` [13](#0-12) 
+Retorna: `List<ProductoProyeccionSimple>` 
 
 #### Proyección abierta (SpEL)
 ```
 GET /api/productos/listaAbierta  
 ```
-Retorna: `List<ProductosProyeccionAbierta>` [14](#0-13) 
+Retorna: `List<ProductosProyeccionAbierta>`
 
 #### Proyección DTO
 ```
 GET /api/productos/listaDTO
 ```
-Retorna: `List<ProductoDTO>` [15](#0-14) 
+Retorna: `List<ProductoDTO>` 
 
 ## Configuración y Ejecución
 
@@ -94,7 +93,7 @@ Retorna: `List<ProductoDTO>` [15](#0-14)
 - MySQL 8.0+
 
 ### Configuración de Base de Datos
-El proyecto usa JPA con MySQL. [16](#0-15)  Las entidades están mapeadas con anotaciones JPA estándar.
+El proyecto usa JPA con MySQL. Las entidades están mapeadas con anotaciones JPA estándar.
 
 ### Ejecutar el Proyecto
 ```bash
@@ -125,14 +124,6 @@ curl http://localhost:8080/api/pedidos/buscar?nombre=Juan
 - **Simple**: `findAllByNombre()` [22](#0-21) 
 - **Consulta Nativa**: `findByListPedidosForCliente()` [23](#0-22) 
 
-## Notas
-
-El proyecto incluye tests de integración que demuestran el uso de las proyecciones. [24](#0-23)  Los servicios implementan manejo de excepciones consistente para todas las operaciones. [25](#0-24) 
-
-Wiki pages you might want to explore:
-- [Layered Architecture (MatiasRodriguez01/PP---proyecciones)](/wiki/MatiasRodriguez01/PP---proyecciones#2.1)
-- [REST API Controllers (MatiasRodriguez01/PP---proyecciones)](/wiki/MatiasRodriguez01/PP---proyecciones#3)
-- [Data Access Layer (MatiasRodriguez01/PP---proyecciones)](/wiki/MatiasRodriguez01/PP---proyecciones#4)
 
 ### Citations
 
